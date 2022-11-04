@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1= title
+
+  - let results=[{ProductID:1456,DateOfManufacturing:"04-07-2020",WarrantyinYears:3}, {ProductID:1458,DateOfManufacturing:"14-09-2020",WarrantyinYears:2},{ProductID:1564,DateOfManufacturing:"15-12-2021",WarrantyinYears:5}]
+  div(class="container-fluid")
+  div(class="row")
+   each value, index in results
+    div(class="col-sm-2" onclick=`buy(${index})`)  ProductID #{value.ProductID} ,  Date #{value.DateOfManufacturing}, Warranty #{value.WarrantyinYears}
+   script.
+    function buy(index)
+    {
+      alert(`Your purchased Item ${index+1}`)
+    }
