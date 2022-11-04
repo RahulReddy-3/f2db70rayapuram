@@ -1,8 +1,8 @@
-# f2wb70rayapuram
+# f2db70rayapuram
 Repo to learn Pug.
 Adding the README file.
 
-Hosted at : https://f2wb70rayapuram.onrender.com
+Hosted at : 
 
 I have included the new Class and I am using following attributes for it.
 
