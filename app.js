@@ -4,6 +4,16 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var VacuumCleaner = require("./models/vacuumcleeaner");
+
+require('dotenv').config();
+const connectionString =
+process.env.MONGO_CON
+mongoose = require('mongoose');
+mongoose.connect(connectionString,
+{useNewUrlParser: true,
+useUnifiedTopology: true});
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var vacuumcleanerRouter = require('./routes/vacuumcleaner');
@@ -12,6 +22,8 @@ var selectorRouter = require('./routes/selector');
 
 
 var app = express();
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -46,5 +58,36 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// We can seed the collection if needed on server start
+async function recreateDB(){
+// Delete everything
+await Costume.deleteMany();
+let instance1 = new
+VacuumCleaner({ProductID:1224, DateOfManufacturing:'12-03-2022',
+WarrantyinYears:2});
+instance1.save( function(err,doc) {
+if(err) return console.error(err);
+console.log("First object saved")
+});
+
+let instance2 = new
+VacuumCleaner({ProductID:1233, DateOfManufacturing:'13-06-2021',
+WarrantyinYears:3});
+instance2.save( function(err,doc) {
+if(err) return console.error(err);
+console.log("Second object saved")
+});
+
+let instance3 = new
+VacuumCleaner({ProductID:1234, DateOfManufacturing:'14-04-2022',
+WarrantyinYears:4});
+instance3.save( function(err,doc) {
+if(err) return console.error(err);
+console.log("Third object saved")
+});
+}
+let reseed = true;
+if (reseed) { recreateDB();}
 
 module.exports = app;
