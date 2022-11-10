@@ -1,10 +1,8 @@
 var express = require('express');
+const vacuumcleaner_controlers = require('../controllers/vacuumcleaner');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) 
-{
-  res.render('VacuumCleaner', { title: 'Search results Vacuum Cleaner' });
-});
 
-module.exports = router;
+router.get('/', vacuumcleaner_controlers.vacuumcleaner_view_all_Page );
+
+module.exports = router;
