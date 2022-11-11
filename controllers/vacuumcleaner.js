@@ -11,6 +11,8 @@ exports.vacuumcleaner_list = async function(req, res) {
         res.send(`{"error": ${err}}`); 
     }   
 }; 
+
+
  
 // VIEWS 
 // Handle a show all view 
@@ -50,7 +52,7 @@ exports.vacuumcleaner_create_post = async function(req, res) {
 exports.vacuumcleaner_detail = function(req, res) { 
     res.send('NOT IMPLEMENTED: Vacuum Cleaner detail: ' + req.params.id); 
 }; 
- 
+
 
 // Handle Vacuum Cleaner delete form on DELETE. 
 exports.vacuumcleaner_delete = function(req, res) { 
@@ -61,3 +63,15 @@ exports.vacuumcleaner_delete = function(req, res) {
 exports.vacuumcleaner_update_put = function(req, res) { 
     res.send('NOT IMPLEMENTED: Vacuum Cleaner update PUT' + req.params.id); 
 }; 
+
+// for a specific Vacuumcleaner.
+exports.vacuumcleaner_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+    result = await vacuumcleaner.findById( req.params.id)
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
+   };
