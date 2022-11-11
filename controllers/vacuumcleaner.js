@@ -27,7 +27,7 @@ exports.vacuumcleaner_view_all_Page = async function(req, res) {
     }   
 }; 
 
-// Handle Costume create on POST. 
+// Handle vacuumcleaner create on POST. 
 exports.vacuumcleaner_create_post = async function(req, res) { 
     console.log(req.body) 
     let document = new vacuumcleaner(); 
@@ -75,3 +75,41 @@ exports.vacuumcleaner_detail = async function(req, res) {
     res.send(`{"error": document for id ${req.params.id} not found`);
     }
    };
+
+// Handle Vacuum Cleaner update form on PUT.
+
+exports.vacuumcleaner_update_put = async function(req, res) {
+
+    console.log(`update on id ${req.params.id} with body
+
+${JSON.stringify(req.body)}`)
+
+    try {
+
+        let toUpdate = await vacuumcleaner.findById( req.params.id)
+
+        // Do updates of properties
+
+        if(req.body.ProductID) toUpdate.ProductID = req.body.ProductID;
+
+        if(req.body.DateOfManufacturing) toUpdate.DateOfManufacturing = req.body.DateOfManufacturing;
+
+        if(req.body.WarrantyinYears) toUpdate.WarrantyinYears = req.body.WarrantyinYears;
+
+        let result = await toUpdate.save();
+
+        console.log("Sucess " + result)
+
+        res.send(result)
+
+    } catch (err) {
+
+        res.status(500)
+
+        res.send(`{"error": ${err}: Update for id ${req.params.id}
+
+failed`);
+
+    }
+
+};
