@@ -14,4 +14,7 @@ router.get('/create', vacuumcleaner_controlers.vacuumcleaner_create_Page);
 /* GET create update page */
 router.get('/update', vacuumcleaner_controlers.vacuumcleaner_update_Page);
 
+/* GET delete costume page */
+router.get('/delete', vacuumcleaner_controlers.vacuumcleaner_delete_Page);
+
 module.exports = router;
