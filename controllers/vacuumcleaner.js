@@ -76,6 +76,21 @@ exports.vacuumcleaner_detail = async function(req, res) {
     }
    };
 
+// Handle Costume delete on DELETE.
+exports.vacuumcleaner_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await vacuumcleaner.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+    };
+
+
+
 // Handle Vacuum Cleaner update form on PUT.
 
 exports.vacuumcleaner_update_put = async function(req, res) {
@@ -112,4 +127,48 @@ failed`);
 
     }
 
+    
+
+};
+
+// Handle a show one view with id specified by query
+exports.vacuumcleaner_view_one_Page = async function(req, res) {
+    console.log("single view for id " + req.query.id)
+    try{
+     result = await vacuumcleaner.findById( req.query.id)
+     res.render('vacuumcleanerdetail',
+         { title: 'Vacuumcleaner Detail', toShow: result });
+    }
+    catch(err){
+     res.status(500)
+     res.send(`{'error': '${err}'}`);
+    }
+};
+
+// Handle building the view for creating a cereal.
+// No body, no in path parameter, no query.
+// Does not need to be async
+exports.vacuumcleaner_create_Page = function (req, res) {
+    console.log("create view")
+    try {
+        res.render('vacuumcleanercreate', { title: 'Vacuum Cleaner Create' });
+    }
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+
+// Handle building the view for updating a cereal.
+// query provides the id
+exports.vacuumcleaner_update_Page = async function (req, res) {
+    console.log("update view for item " + req.query.id)
+    try {
+        let result = await vacuumcleaner.findById(req.query.id)
+        res.render('vacuumcleanerupdate', { title: 'Vacuum Cleaner Update', toShow: result });
+    }
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
 };

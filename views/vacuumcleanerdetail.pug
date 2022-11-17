@@ -1,0 +1,24 @@
+extends layout
+block content
+ h1= title
+ if (toShow == null)
+  h2 No instance to detail
+ else
+  - let vacuumcleanerid = toShow._id
+  - let ProductID = toShow.ProductID
+  - let DateOfManufacturing = toShow.DateOfManufacturing
+  - let WarrantyinYears = toShow.WarrantyinYears
+
+  div
+   div.row
+    div(class='vacuumcleanerAttr mr-3') Vacuum Cleaner ID is:
+    div #{vacuumcleanerid}
+   div.row
+    div(class='vacuumcleanerAttr mr-3') Product ID is:
+    div #{ProductID}
+   div.row
+    div(class='vacuumcleanerAttr mr-3') Date Of manufacturing Flavor is:
+    div #{DateOfManufacturing}
+   div.row
+    div(class='vacuumcleanerAttr mr-3') Warranty in Years is:
+    div #{WarrantyinYears}
