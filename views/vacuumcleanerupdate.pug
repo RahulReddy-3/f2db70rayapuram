@@ -2,42 +2,42 @@ extends layout
 block content
  h1= title
  if (toShow == null)
-  h2 No instance to update
+   h2 No instance to update
  else
   - let vacuumcleanerid = toShow._id
-  - let vacuumcleanerProductID = toShow.vacuumcleanerProductID
-  - let vacuumcleanerDateOfManufacturing = toShow.vacuumcleanerDateOfManufacturing
-  - let vacuumcleanerWarrantyinYears = toShow.vacuumcleanerWarrantyinYears
+  - let ProductID = toShow.ProductID
+  - let DateOfManufacturing = toShow.DateOfManufacturing
+  - let WarrantyinYears = toShow.WarrantyinYears
  
-   div.row(class='mb-2')
+  div.row(class='mb-2')
     div.mr-1 ID is
     div #{vacuumcleanerid}
   - let actionid = "/resource/vacuumcleaner/" + vacuumcleanerid
   form(id='VacuumCleanerForm', action= actionid, method="PUT")
    div.form-group
-    label.vacuumcleanerAttr(for='vacuumcleanerProductID') vacuumcleaner ProductID
-    input#vacuumcleanerProductID(type='number', name='vacuumcleanerProductID', value= vacuumcleanerProductID )
+    label.vacuumcleanerAttr(for='ProductID') vacuumcleaner ProductID
+    input#ProductID(type='number', name='ProductID', value= ProductID )
    div.form-group
-    label.vacuumcleanerAttr(for='vacuumcleanerDateOfManufacturing') vacuumcleaner DateOfManufacturing
-    input#vacuumcleanerDateOfManufacturing(type='text', name='vacuumcleanerDateOfManufacturing', value= vacuumcleanerDateOfManufacturing )
+    label.vacuumcleanerAttr(for='DateOfManufacturing') vacuumcleaner DateOfManufacturing
+    input#DateOfManufacturing(type='text', name='DateOfManufacturing', value= DateOfManufacturing )
    div.form-group
-    label.vacuumcleanerAttr(for='vacuumcleanerWarrantyinYears') vacuumcleaner WarrantyinYears
-    input#vacuumcleanerWarrantyinYears(type='number', name='vacuumcleanerWarrantyinYears', value= vacuumcleanerWarrantyinYears )
+    label.vacuumcleanerAttr(for='WarrantyinYears') vacuumcleaner WarrantyinYears
+    input#WarrantyinYears(type='number', name='WarrantyinYears', value= WarrantyinYears )
    input(type="submit")
   script.
-   document.forms['VacuumCleanerForm'].addEventListener('submit', (event) => {
-    event.preventDefault();
-    // TODO do something here to show user that form is being submitted
-    fetch(event.target.action, {
-     method: 'PUT',
-     body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-    }).then((resp) => {
-     return resp.json(); // or resp.text() or whatever the server sends
-    }).then((body) => {
-     alert("Update succeded")
-    // TODO handle body
-    }).catch((error) => {
-    // TODO handle error
-     alert("Update failed " + error )
+    document.forms['VacuumCleanerForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+       method: 'PUT',
+       body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+       return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+       alert("Update succeded")
+      // TODO handle body
+      }).catch((error) => {
+      // TODO handle error
+       alert("Update failed " + error )
+      });
     });
-   });

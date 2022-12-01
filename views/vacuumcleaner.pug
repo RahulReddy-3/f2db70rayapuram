@@ -3,12 +3,18 @@ extends layout
 block content
   h1= title
   - var vcList = results
+  - let create = `dispatch(\"/vacuumcleaner/create\")` 
+  button.btn( class="btn-primary ml-1", onclick= create) Create 
   div.container-fluid
     div.row
         each item, index in vcList
          - let destination = `dispatch(\"/vacuumcleaner/update?id=${item._id}\")` 
+         - let Details = `dispatch(\"/vacuumcleaner/detail?id=${item._id}\")` 
+         - let Delete = `dispatch(\"/vacuumcleaner/delete?id=${item._id}\")` 
           div.row-sm-2(class="m-1") ProductID: #{item["ProductID"]}  <br>  DateOfManufacturing: #{item["DateOfManufacturing"]} <br> WarrantyinYears: #{item["WarrantyinYears"]}
-          button.btn( class="btn-primary ml-1", onclick= destination) Update 
+           button.btn( class="btn-primary ml-1", onclick= destination) Update 
+           button.btn( class="btn-primary ml-1", onclick= Details) Details 
+           button.btn( class="btn-primary ml-1", onclick= Delete) Delete 
     script. 
        function dispatch(path){ 
         window.location.href=path 

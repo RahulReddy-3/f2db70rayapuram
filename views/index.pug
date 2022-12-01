@@ -1,20 +1,12 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to Rahul's Page #{title}
-  button(type="button", class="btn btn-danger" onclick="doBump()") Press Me
-  div(id="bump")  Bump the count
-  script.
-    var bump = 1;
-    var count = 0;
-
-
-    function doBump()
-    {
-      count = count + bump;
-      bump = bump + 1;
-      document.getElementById("bump").innerHTML="Count  "+ count +"  with bump "+ bump;
-    }
-
-  a(href = "VacuumCleaner") Vacuum Cleaner page
+extends layout 
+ 
+block content 
+  if (!user) 
+     a(href="/login") Login 
+      br 
+      a(href="/register") Register 
+  if (user) 
+    p You are currently logged in as #{user.username} 
+    a(href="/vacuumcleaner") Take me to Vacuum Cleaner
+    br 
+    a(href="/logout") Logout 
