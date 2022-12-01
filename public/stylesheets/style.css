@@ -13,12 +13,12 @@ a {
   }
 
   .vacuumcleanerStyle {
-    width: 157px;
+    width: 300px;
     font-style: oblique;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size:x-large;
-    font: 100;
-    font: 1em sans-serif;
+    font: 8;
+    font: .8em sans-serif;
     font-feature-settings:"abvm";
     text-shadow: 2px 2px 5px black;
     background-color:orange;
